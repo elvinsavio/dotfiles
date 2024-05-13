@@ -1,3 +1,5 @@
+#! /bin/bash  
+
 NIX_CONFIG_FILE=/etc/nixos/configuration.nix
 if [ -f "$NIX_CONFIG_FILE" ]; then
     echo "Syncing nix configuration file"
