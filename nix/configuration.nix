@@ -115,16 +115,18 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+     neovim
      curl
      ungoogled-chromium
      gnome.gnome-terminal
+     cli-visualizer
   ];
 
 
  environment.interactiveShellInit = ''
   	alias ls='ls -la --color=auto'
 	alias dev='devenv' 
-	alias code="codium" 
+	alias edit="nvim" 
  '';
 
  environment.gnome.excludePackages = (with pkgs; [
