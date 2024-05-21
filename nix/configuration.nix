@@ -118,8 +118,8 @@
      neovim
      curl
      ungoogled-chromium
-     gnome.gnome-terminal
-     cli-visualizer
+     gnome.nautilus
+     kitty
   ];
 
 
@@ -162,6 +162,26 @@
   #   enable = true;
   #   enableSSHSupport = true;
   # };
+
+  programs.neovim = {
+    enable = true;
+    defaultEditor = true;
+    configure = {
+    customRC = ''
+      set number
+      set cc=80
+      set list
+      set listchars=tab:→\ ,space:·,nbsp:␣,trail:•,eol:¶,precedes:«,extends:»
+      if &diff
+        colorscheme blue
+      endif
+     set number relativenumber
+     '';
+     packages.myVimPackage = with pkgs.vimPlugins; {
+      	 start = [ ctrlp ];
+      };
+    };
+  };
 
   # List services that you want to enable:
 
