@@ -19,24 +19,6 @@ font pango:monospace 8
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
 #font pango:DejaVu Sans Mono 8
 
-# Wallpaper
-exec_always --no-startup-id feh --bg-fill ~/Pictures/wallpaper.png
-
-# Start XDG autostart .desktop files using dex. See also
-# https://wiki.archlinux.org/index.php/XDG_Autostart
-exec --no-startup-id dex --autostart --environment i3
-
-# The combination of xss-lock, nm-applet and pactl is a popular choice, so
-# they are included here as an example. Modify as you see fit.
-
-# xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
-# screen before suspend. Use loginctl lock-session to lock your screen.
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
-
-# NetworkManager is the most popular way to manage wireless networks on Linux,
-# and nm-applet is a desktop environment-independent system tray GUI for it.
-exec --no-startup-id nm-applet
-
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
@@ -44,22 +26,17 @@ bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
+
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
 # move tiling windows via drag & drop by left-clicking into the title bar,
-# or left-clicking anywhere into the window while holding the floating modifier.
-tiling_drag modifier titlebar
+# or left-clicking anywhere into the window while holding the floating modifier. 
+# tiling_drag modifier titlebar
 
-# start a terminal
-bindsym $mod+Return exec kitty 
 
 # kill focused window
 bindsym $mod+q kill
-
-# start dmenu (a program launcher)
-bindsym $mod+Shift+Return exec "rofi -modi drun,run -show drun"
-bindsym $mod+Tab exec "rofi -show"
 
 # change focus
 bindsym $mod+j focus left
@@ -108,7 +85,6 @@ bindsym $mod+space focus mode_toggle
 # focus the parent container
 bindsym $mod+a focus parent
 
-bindsym $mod+m exec "xrandr --auto && arandr"
 # focus the child container
 #bindsym $mod+d focus child
 
@@ -181,25 +157,10 @@ mode "resize" {
     	bindsym $mod+r mode "default"
 }
 
+# resize current window 
 bindsym $mod+r mode "resize"
 
-# Start i3bar to display a workspace bar (plus the system information i3status
-# finds out, if available)
-bar {
- #	status_command i3status
-    	colors {
-            	background #000000
-            	statusline #BCC6CC
-            	separator #4b5262
 
-            	# colour of         	border  background text
-            	focused_workspace   	#060505 #123524 #BCC6CC
-            	active_workspace    	#060505 #060505 #BCC6CC
-            	inactive_workspace  	#060505 #060505 #BCC6CC
-            	urgent_workspacei   	#060505 #ebcb8b #060505
-	}
-	status_command i3status --config ~/.config/i3status/config
-}
 
 # border colors
 # class             	border  backgr. text	indicator child_border
@@ -210,3 +171,50 @@ client.urgent       	#060505 #900000 #BCC6CC #900000   #900000
 client.placeholder  	#060505 #060505 #BCC6CC #000000   #000000
 
 client.background   	#000000
+
+
+# Startup Applicatins
+
+# kill any existing polybar instance and start polybar
+exec_always --no-startup-id pkill -f polybar
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+
+# Wallpaper
+exec_always --no-startup-id feh --bg-fill ~/Pictures/wallpaper/wallpaper.png
+
+# Start XDG autostart .desktop files using dex. See also
+# https://wiki.archlinux.org/index.php/XDG_Autostart
+exec --no-startup-id dex --autostart --environment i3
+
+# The combination of xss-lock, nm-applet and pactl is a popular choice, so
+# they are included here as an example. Modify as you see fit.
+
+# xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
+# screen before suspend. Use loginctl lock-session to lock your screen.
+exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+
+# NetworkManager is the most popular way to manage wireless networks on Linux,
+# and nm-applet is a desktop environment-independent system tray GUI for it.
+exec --no-startup-id nm-applet
+
+# gnome theme
+exec --no-startup-id /usr/libexec/gsd-xsettings
+
+# Application Binding
+
+# start a terminal
+bindsym $mod+Return exec kitty 
+
+# Screen Shot
+# Whole screen
+bindsym $mod+p exec gnome-screenshot
+
+# Resize screen shot
+bindsym $mod+Shift+p exec gnome-screenshot -a
+
+# resert xrandr and opens gui
+bindsym $mod+m exec "xrandr --auto && arandr"
+
+# start dmenu (a program launcher)
+bindsym $mod+Shift+Return exec "rofi -modi drun,run -show drun"
+bindsym $mod+Tab exec "rofi -show"
