@@ -1,5 +1,6 @@
 
-
+## Preview
+![Screenshot](https://github.com/elvinsavio/dotfiles/blob/main/screenshots/Screenshot-2.png?raw=true)
 
 
 
