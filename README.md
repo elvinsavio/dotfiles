@@ -10,4 +10,4 @@ FiraCode from nerd fonts [link](https://www.nerdfonts.com/)
 [Unsplash](https://unsplash.com/@claybanks)
 
 
-### Warning: Running the install with overwrite any existing config
+### Warning: Running the install will overwrite any existing config
