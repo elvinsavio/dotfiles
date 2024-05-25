@@ -1,14 +1,6 @@
 #! /bin/bash  
 
-NIX_CONFIG_FILE=/etc/nixos/configuration.nix
-if [ -f "$NIX_CONFIG_FILE" ]; then
-    echo "Syncing nix configuration file"
-    nix_folder="./nix/"
-    mkdir -p $nix_folder
-    cp $NIX_CONFIG_FILE $nix_folder
-else
-    echo "Can't find nix configuration file"
-fi
+
 
 i3_CONFIG_FILE=~/.config/i3/config
 if [ -f "$i3_CONFIG_FILE" ]; then
