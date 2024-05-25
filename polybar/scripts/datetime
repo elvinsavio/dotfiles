@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# Get the current hour
+DATE=$(date +"%A %d %b")
+TIME=$(date +"%H:%M:")
+SECONDS=$(date +"%S")
+PADDED_SECONDS="`printf '%02d' $SECONDS`" 
+
+# Output the icon
+echo "  "   $DATE "|"  󰦖  $TIME$PADDED_SECONDS "  "
