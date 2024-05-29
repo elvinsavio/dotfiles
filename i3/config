@@ -11,8 +11,6 @@
 
 # kill an running process
 exec_always --no-startup-id killall picom
-exec_always --no-startup-id killall polybar
-
 
 set $mod Mod4
 
@@ -185,7 +183,6 @@ for_window [class="^.*"] border pixel 0
 
 # Startup Applicatins
 
-# kill any existing polybar instance and start polybar
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 # Wallpaper
